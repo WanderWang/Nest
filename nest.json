@@ -1,0 +1,8 @@
+{
+  "name": "nest",
+  "dependence": ["core"],
+  "source":"src",
+  "file_list" : [
+    "Nest.ts"
+  ]
+}
