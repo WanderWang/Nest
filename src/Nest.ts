@@ -35,6 +35,13 @@ module nest.user {
 
     }
 
+
+    export function isSupport(callback:Function){
+        var data = {module: "user", action: "isSupport"};
+        callRuntime(data, callback);
+    }
+
+
     /**
      * 登录接口传递参数
      *
@@ -59,10 +66,17 @@ module nest.iap {
      * @param orderInfo
      * @param callback
      */
-    export function pay(orderInfo, callback:Function) {
+    export function pay(orderInfo:PayInfo, callback:Function) {
 
         var data = {module: "iap", action: "pay", "param": orderInfo};
         callRuntime(data, callback);
+
+    }
+
+
+    export interface PayInfo {
+
+        goodsId:string;
 
     }
 

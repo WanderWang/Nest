@@ -35,6 +35,9 @@ class Main extends egret.DisplayObjectContainer {
 
     private container:egret.DisplayObjectContainer;
 
+    private resultText:egret.TextField;
+
+
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
@@ -107,7 +110,16 @@ class Main extends egret.DisplayObjectContainer {
         this.container = new egret.DisplayObjectContainer();
         this.addChild(this.container);
 
+        this.resultText = new egret.TextField();
+        this.resultText.multiline = true;
+        this.resultText.width = 300;
+        this.resultText.height = 400;
+        this.addChild(this.resultText);
+        this.resultText.x = 100;
+        this.resultText.y = 400;
 
+
+        this.createButton("检查登录类型",this.testLoginSupport,this);
         this.createButton("登录",this.testLogin,this);
         this.createButton("支付",this.testPay,this);
         this.createButton("分享",this.testShare,this);
@@ -128,24 +140,44 @@ class Main extends egret.DisplayObjectContainer {
         return loginButton;
     }
 
+    private print(text:any){
+        this.resultText.text = JSON.stringify(text);
+    }
+
 
 
 
     private testLogin():void{
 
+        var self = this;
         var loginInfo:nest.user.LoginInfo = {};
-        nest.user.init(loginInfo, function(data){
-            console.log (data);
+        nest.user.login(loginInfo, function(data){
+
+            self.print(data);
+        })
+    }
+
+    private testLoginSupport():void{
+        var self = this;
+        nest.user.isSupport(function(data){
+
+            self.print(data);
         })
     }
 
     private testPay():void{
-        nest.iap.pay({},function(data){
-            console.log (data);
+        var self = this;
+        var payInfo:nest.iap.PayInfo = {
+            goodsId:"19001"
+        };
+
+        nest.iap.pay(payInfo,function(data){
+            self.print(data);
         })
     }
 
     private testShare():void{
+        var self = this;
         var data:nest.share.ShareInfo = {
 
             title:"title",
@@ -157,7 +189,7 @@ class Main extends egret.DisplayObjectContainer {
 
         };
         nest.share.share(data, function(data){
-            console.log (data);
+            self.print(data);
         })
     }
 }
