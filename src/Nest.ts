@@ -19,7 +19,7 @@ module nest.user {
      * @param callback
      */
     export function checkLogin(loginInfo:LoginInfo,callback:Function) {
-        var data = {token:null};
+        var data = {token:null,status:"-1"};
         callback(data);
     }
 
