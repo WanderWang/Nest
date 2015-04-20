@@ -132,7 +132,9 @@ class Main extends egret.DisplayObjectContainer {
 
 
     private testLogin():void{
-        nest.user.init( function(data){
+
+        var loginInfo:nest.user.LoginInfo = {};
+        nest.user.init(loginInfo, function(data){
             console.log (data);
         })
     }

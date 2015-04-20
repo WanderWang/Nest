@@ -6,7 +6,7 @@
 module nest.user {
 
 
-    export function init(callback:Function) {
+    export function init(loginInfo:LoginInfo,callback:Function) {
 
         var data = {module: "user", action: "init"};
         callRuntime(data, callback);
