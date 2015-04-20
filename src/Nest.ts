@@ -5,10 +5,46 @@
 
 module nest.user {
 
+
     export function init(callback:Function) {
 
         var data = {module: "user", action: "init"};
         callRuntime(data, callback);
+
+    }
+
+    /**
+     * 是否已登录
+     * @param loginInfo
+     * @param callback
+     */
+    export function checkLogin(loginInfo:LoginInfo,callback:Function) {
+        var data = {token:null};
+        callback(data);
+    }
+
+    /**
+     * 调用渠道登录接口
+     * @param loginInfo
+     * @param callback
+     */
+    export function login(loginInfo:LoginInfo,callback:Function) {
+
+        var data = {module: "user", action: "login"};
+        callRuntime(data, callback);
+
+    }
+
+    /**
+     * 登录接口传递参数
+     *
+     */
+    export interface LoginInfo {
+
+        /**
+         * 登录类型：如 QQ登录，微信支付
+         */
+        loginType?:string;
 
     }
 
@@ -18,6 +54,11 @@ module nest.user {
 
 module nest.iap {
 
+    /**
+     * 支付
+     * @param orderInfo
+     * @param callback
+     */
     export function pay(orderInfo, callback:Function) {
 
         var data = {module: "iap", action: "pay", "param": orderInfo};
@@ -30,11 +71,21 @@ module nest.iap {
 
 module nest.share {
 
+    /**
+     * 是否支持分享
+     * @param callback
+     */
     export function isSupport(callback:Function) {
         var data = {module:"share",action:"isSupport"};
         callRuntime(data, callback);
     }
 
+
+    /**
+     * 分享
+     * @param shareInfo
+     * @param callback
+     */
     export function share(shareInfo:ShareInfo,callback:Function) {
 
         var data = {module:"share",action:"share","param":shareInfo};
@@ -42,6 +93,9 @@ module nest.share {
 
     }
 
+    /**
+     * 分享接口传递参数
+     */
     export interface ShareInfo {
 
         title:string;
@@ -53,8 +107,6 @@ module nest.share {
         img_url:string;
 
         url:string;
-
-
 
     }
 }
