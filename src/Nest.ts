@@ -36,6 +36,10 @@ module nest.user {
     }
 
 
+    /**
+     *
+     * @param callback 返回类型 LoginCallbackInfo
+     */
     export function isSupport(callback:Function){
         var data = {module: "user", action: "isSupport"};
         callRuntime(data, callback);
@@ -52,6 +56,22 @@ module nest.user {
          * 登录类型：如 QQ登录，微信支付
          */
         loginType?:string;
+
+    }
+
+    export interface LoginCallbackInfo {
+
+        /**
+         * 状态值，0表示成功
+         */
+        status:string;
+
+        /**
+         * 登录方式。
+         * 以QQ浏览器为例，返回 ["qq","wx"]
+         * 开发者应该主动判断登录方式，如果返回了 null ，则表示没有特殊支付方式，走登录
+         */
+        loginType:Array<string>
 
     }
 
