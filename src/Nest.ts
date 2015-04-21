@@ -30,7 +30,7 @@ module nest.user {
      */
     export function login(loginInfo:LoginInfo,callback:Function) {
 
-        var data = {module: "user", action: "login"};
+        var data = {module: "user", action: "login",param:loginInfo};
         callRuntime(data, callback);
 
     }
@@ -163,6 +163,10 @@ module nest.social {
 
 module nest.app {
 
+    /**
+     * 是否支持特定功能
+     * @param callback
+     */
     export function isSupport(callback:Function){
         var data = {module:"app",action:"isSupport"};
         callRuntime(data, callback);
