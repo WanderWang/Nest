@@ -123,6 +123,8 @@ class Main extends egret.DisplayObjectContainer {
         this.createButton("登录",this.testLogin,this);
         this.createButton("支付",this.testPay,this);
         this.createButton("分享",this.testShare,this);
+        this.createButton("好友列表",this.testFriends,this);
+        this.createButton("发送到桌面",this.testSendToDesktop,this);
 
 
 
@@ -192,6 +194,25 @@ class Main extends egret.DisplayObjectContainer {
             self.print(data);
         })
     }
+
+    private testFriends():void {
+
+        var self = this;
+        var data = {};
+        nest.social.getFriends(data, function(data){
+            self.print(data);
+        })
+    }
+
+    private testSendToDesktop():void {
+
+        var self = this;
+        var data = {};
+        nest.app.sendToDesktop(data, function(data){
+            self.print(data);
+        })
+    }
+
 }
 
 

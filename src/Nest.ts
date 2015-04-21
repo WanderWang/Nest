@@ -149,11 +149,34 @@ module nest.share {
 module nest.social {
 
 
-    export function isSupport(callback){
-        var data = {module:"share",action:"isSupport"};
+    export function isSupport(callback:Function){
+        var data = {module:"social",action:"isSupport"};
         callRuntime(data,callback);
     }
 
+    export function getFriends(data,callback:Function){
+        data = {module:"social",action:"getFriends"};
+        callRuntime(data,callback);
+    }
+
+}
+
+module nest.app {
+
+    export function isSupport(callback:Function){
+        var data = {module:"app",action:"isSupport"};
+        callRuntime(data, callback);
+    }
+
+    export function attention(appInfo:any,callback:Function){
+        var data = {module:"app",action:"attention"};
+        callRuntime(data, callback);
+    }
+
+    export function sendToDesktop(appInfo:any,callback:Function){
+        var data = {module:"app",action:"sendToDesktop"};
+        callRuntime(data, callback);
+    }
 }
 
 module nest {

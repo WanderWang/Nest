@@ -3,6 +3,7 @@
   "dependence": ["core"],
   "source":"src",
   "file_list" : [
-    "Nest.ts"
+    "Nest.ts",
+    "egret_sdk_bridge.js"
   ]
 }
