@@ -166,17 +166,28 @@ module nest.app {
     /**
      * 是否支持特定功能
      * @param callback
+     * @callback-param  { status:"0" , attention :"1" , sendToDesktop : "1"}
      */
     export function isSupport(callback:Function){
         var data = {module:"app",action:"isSupport"};
         callRuntime(data, callback);
     }
 
+    /**
+     * 关注
+     * @param appInfo
+     * @param callback
+     */
     export function attention(appInfo:any,callback:Function){
         var data = {module:"app",action:"attention"};
         callRuntime(data, callback);
     }
 
+    /**
+     * 发送到桌面
+     * @param appInfo
+     * @param callback
+     */
     export function sendToDesktop(appInfo:any,callback:Function){
         var data = {module:"app",action:"sendToDesktop"};
         callRuntime(data, callback);
