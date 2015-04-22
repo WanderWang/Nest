@@ -15,11 +15,22 @@
     }
     alert(typeof GameEngine);
 
-    GameEngine.setOption("gameId","1112222111");
-    GameEngine.setOption("gameUrl","http://10.71.40.185:3000/game__012.zip");
-//    GameEngine.setOption("gameUrl","http://sygys.egret-labs.org/v201504161719/game_code_v201504161719.zip");
-//    GameEngine.start("egret");
-    GameEngine.start("mygameengine",true);
+    var egretCustomData = {
+        "gameId":"88",
+        "zipUrl":"http://10.71.40.221:3000/game__013.zip"
+
+    };
+
+    var info = {
+            "engineName": "egret",
+            "localDebug": true,
+            "orientation" : "portrait",
+            "gameName" : "史上最牛逼的游戏",
+            "gameIconUrl" : "http://static.egret-labs.org/h5game/loligoh5/tieba/res/logo.png",
+            "gameUrl" : "http://www.qq.com",
+            "ext" : JSON.stringify(egretCustomData)
+    };
+    GameEngine.run(JSON.stringify(info));
 
 </script>
 
