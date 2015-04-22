@@ -119,6 +119,7 @@ module nest.share {
      * 分享
      * @param shareInfo
      * @param callback
+     * @callback-param result 0 表示分享成功，-1表示用户取消
      */
     export function share(shareInfo:ShareInfo,callback:Function) {
 
