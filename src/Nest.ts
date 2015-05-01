@@ -3,30 +3,51 @@
  */
 
 
+/**
+ * 登录功能
+ *
+ * 逻辑：
+ * 1.在游戏中展示一张登录背景界面
+ * 2.调用 checkLogin 函数判断是否已经登录过，如果登录过，进入步骤5，否则进入步骤3
+ * 3.调用 isSupport 函数判断支持的登录类型，根据登录类型显示对应的登录图标
+ * 4.用户点击登录图标后，调用 login 函数打开登录面板进行登录
+ * 5.登录成功后，隐藏登录按钮，显示切换账号、选择服务器、进入游戏三个按钮（可缩减），或者直接进入步骤7进入游戏
+ * 6.如果用户点击了切换账号，应回到步骤3，如果用户点击了进入游戏按钮，应该进入步骤7
+ * 7.退出登录界面，进入游戏
+ *
+ *
+ * API变化：
+ * 1. nest.user.init 接口被废弃，改用 egret.user.login
+ */
 module nest.user {
 
-
-    export function init(loginInfo:LoginInfo,callback:Function) {
-
-        var data = {module: "user", action: "init"};
-        callRuntime(data, callback);
-
-    }
-
     /**
-     * 是否已登录
-     * @param loginInfo
+     * 检测是否已登录
+     * @param loginInfo 请传递一个null
      * @param callback
+     * @callback-param  @see nest.user.LoginCallbackInfo
      */
     export function checkLogin(loginInfo:LoginInfo,callback:Function) {
-        var data = {token:null,status:"-1"};
-        callback(data);
+
+        var version = egret_native.getOption("egret.runtime.nest");
+        if (version > 1){//todo  暂时一处兼容代码，下个版本删除
+            var data = {module: "user", action: "checkLogin",param:loginInfo};
+            callRuntime(data, callback);
+        }
+        else{
+            var result = {token:null,status:"-1"}
+            callback(result);
+        }
+
+
+
     }
 
     /**
      * 调用渠道登录接口
      * @param loginInfo
      * @param callback
+     * @callback-param  @see nest.user.LoginCallbackInfo
      */
     export function login(loginInfo:LoginInfo,callback:Function) {
 
@@ -37,8 +58,9 @@ module nest.user {
 
 
     /**
-     *
-     * @param callback 返回类型 LoginCallbackInfo
+     * 检测支持何种登录方式
+     * @param callback
+     * @callback-param  @see nest.user.LoginCallbackInfo
      */
     export function isSupport(callback:Function){
         var data = {module: "user", action: "isSupport"};
@@ -63,15 +85,30 @@ module nest.user {
 
         /**
          * 状态值，0表示成功
+         * 该值未来可能会被废弃
          */
         status:string;
 
         /**
+         * 结果值，0表示成功
+         */
+        result:string;
+
+        /**
+         * isSupport 函数返回。
          * 登录方式。
          * 以QQ浏览器为例，返回 ["qq","wx"]
-         * 开发者应该主动判断登录方式，如果返回了 null ，则表示没有特殊支付方式，走登录
+         * 开发者应该主动判断登录方式，如果返回了 null ，则表示没有特殊登录方式
          */
         loginType:Array<string>
+
+        /**
+         * checkLogin , login 函数返回。
+         * 用户 token 信息，如果checkLogin函数中没有token则表示用户尚未登录
+         */
+        token:string;
+
+
 
     }
 
@@ -97,6 +134,12 @@ module nest.iap {
     export interface PayInfo {
 
         goodsId:string;
+
+        goodsNumber:string;
+
+        serverId:string;
+
+        ext:string;
 
     }
 
@@ -188,6 +231,7 @@ module nest.app {
      * 发送到桌面
      * @param appInfo
      * @param callback
+     * @param callback-param result 0表示添加桌面成功，-1表示添加失败
      */
     export function sendToDesktop(appInfo:any,callback:Function){
         var data = {module:"app",action:"sendToDesktop"};
@@ -219,6 +263,13 @@ module nest {
 
         egret.ExternalInterface.call(tag, JSON.stringify(data));
     }
+
+
+}
+
+declare module egret_native {
+
+    export function getOption(option:string):any;
 
 
 }

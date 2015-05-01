@@ -120,12 +120,16 @@ class Main extends egret.DisplayObjectContainer {
 
 
         this.createButton("检查登录类型",this.testLoginSupport,this);
+        this.createButton("检测是否登录",this.testCheckLogin,this);
         this.createButton("登录",this.testLogin,this);
         this.createButton("支付",this.testPay,this);
         this.createButton("分享",this.testShare,this);
         this.createButton("好友列表",this.testFriends,this);
         this.createButton("发送到桌面",this.testSendToDesktop,this);
 
+
+        var str:string = egret_native.getOption("startupParam");
+        console.log (str);
 
 
     }
@@ -146,8 +150,14 @@ class Main extends egret.DisplayObjectContainer {
         this.resultText.text = JSON.stringify(text);
     }
 
+    private testCheckLogin():void{
 
+        var self = this;
+        nest.user.checkLogin(null, function(data){
 
+            self.print(data);
+        })
+    }
 
     private testLogin():void{
 
@@ -171,7 +181,10 @@ class Main extends egret.DisplayObjectContainer {
     private testPay():void{
         var self = this;
         var payInfo:nest.iap.PayInfo = {
-            goodsId:"19001"
+            goodsId:"1",
+            goodsNumber:"1",
+            serverId:"1",
+            ext:"fdsfdsf"
         };
 
         nest.iap.pay(payInfo,function(data){
@@ -181,13 +194,14 @@ class Main extends egret.DisplayObjectContainer {
 
     private testShare():void{
         var self = this;
+
         var data:nest.share.ShareInfo = {
 
-            title:"title",
-            description:"desc",
-            img_title:"title",
-            img_url:"http://a.hiphotos.baidu.com/image/pic/item/2fdda3cc7cd98d1021036131233fb80e7aec90de.jpg",
-            url:"http://www.baidu.com"
+            title:"分享游戏得元宝",
+            description:"了",
+            img_title:"古龙群侠传",
+            img_url:"http://sglqxz.egret-labs.org/common/glqxzshareicon.png",
+            url:"http://glqxzqqb.gz.1251278653.clb.myqcloud.com/share.html"
 
 
         };

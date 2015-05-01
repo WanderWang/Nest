@@ -6,34 +6,28 @@
 </head>
 <body>
 
-
+231312312312312
 <script>
 
 
-    window.onerror = function(){
+    window.onerror = function () {
         alert(arguments[0])
     }
 
-    var egretCustomData = {
-        "gameId":"85",
-        "zipUrl":"http://snscwl.egret-labs.org/v201504221555/game_code_v201504221555.zip"
 
-    };
-
-    var egretCustomData = {
-        "gameId":"100",
-        "zipUrl":"http://10.71.40.221:3000/game__013.zip"
-
-    };
+    alert(GameEngine)
 
     var info = {
-            "engineName": "egret",
-            "localDebug": true,
-            "orientation" : "portrait",
-            "gameName" : "女神冲我来",
-            "gameIconUrl" : "http://snscwl.egret-labs.org/common/shareicon.png",
-            "gameUrl" : "http://www.qq.com",
-            "ext" : JSON.stringify(egretCustomData)
+        "engineName": "egret",
+        "localDebug": "true",
+        "orientation": "portrait",
+        "gameName": "萌战记",
+        "gameIconUrl": "http://snscwl.egret-labs.org/common/shareicon.png",
+        "gameUrl": "http://www.qq.com",
+        "ext": JSON.stringify({
+            "gameId": '86',
+            "zipUrl": 'http://10.0.11.165:3000//game__026.zip'
+        })
     };
     GameEngine.run(JSON.stringify(info));
 
