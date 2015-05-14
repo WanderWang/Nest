@@ -6,7 +6,7 @@
 </head>
 <body>
 
-
+<script src="http://jsapi.qq.com/get?api=x5gameplayer.*" type="text/javascript"></script>
 <script>
 
 
@@ -16,21 +16,19 @@
     }
 
 
-    alert(GameEngine)
-
     var info = {
         "engineName": "egret",
         "localDebug": "true",
         "orientation": "portrait",
-        "gameName": "萌战记",
+        "gameName": "萌战姬",
         "gameIconUrl": "http://snscwl.egret-labs.org/common/shareicon.png",
         "gameUrl": "http://www.qq.com",
         "ext": JSON.stringify({
             "gameId": '86',
-            "zipUrl": 'http://10.0.11.90:3000//game__026.zip'
+            "zipUrl": 'http://10.0.11.49:3000/game__027.zip'
         })
     };
-    GameEngine.run(JSON.stringify(info));
+    browser.x5gameplayer.run(info);
 
 </script>
 

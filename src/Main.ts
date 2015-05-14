@@ -72,6 +72,7 @@ class Main extends egret.DisplayObjectContainer {
         this.createButton("分享",this.testShare,this);
         this.createButton("好友列表",this.testFriends,this);
         this.createButton("发送到桌面",this.testSendToDesktop,this);
+        this.createButton("打开游戏论坛",this.testOpenBBS,this);
 
 
         var str:string = egret_native.getOption("startupParam");
@@ -94,6 +95,10 @@ class Main extends egret.DisplayObjectContainer {
 
     private print(text:any){
         this.resultText.text = JSON.stringify(text);
+    }
+
+    private testOpenBBS():void{
+
     }
 
     private testCheckLogin():void{
