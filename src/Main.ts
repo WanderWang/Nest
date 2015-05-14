@@ -62,7 +62,7 @@ class Main extends egret.DisplayObjectContainer {
         this.resultText.height = 400;
         this.addChild(this.resultText);
         this.resultText.x = 100;
-        this.resultText.y = 400;
+        this.resultText.y = 500;
 
 
         this.createButton("检查登录类型",this.testLoginSupport,this);
@@ -98,7 +98,11 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private testOpenBBS():void{
+        var self = this;
+        nest.social.openBBS(null, function(data){
 
+            self.print(data);
+        })
     }
 
     private testCheckLogin():void{

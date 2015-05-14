@@ -204,7 +204,7 @@ module nest.social {
     }
 
     export function openBBS(socialInfo,callback:Function){
-        var data = {module:"social",action:"getFriends"};
+        var data = {module:"social",action:"openBBS"};
         callRuntime(data,callback);
     }
 
